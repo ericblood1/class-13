@@ -2,6 +2,8 @@
 
 ## Node Basic HTTP Server
 
+* recall: npm init to create manifest
+
 ```
 var http = require('http');
 http.createServer(function (req, res) {
@@ -13,18 +15,19 @@ console.log('Server running at http://127.0.0.1:1337/');
 
 $ npm start
 
-and check in browser @ localhost
+and check in browser at localhost:1337
 
 ## Serving Pages
 
-* remove all lines from server.js except the first and add modules
+* reference folder 2-simpleserver
+* removed all lines from server.js except the first and added modules
 ```
 var http = require('http');
 var url = require('url');
 var path = require('path');
 var fs = require('fs');
 ```
-* create an array with available mime types
+* created an array with available mime types
 ```
 var mimeTypes = {
 	"html" : "text/html",
@@ -35,7 +38,7 @@ var mimeTypes = {
 	"css" : "text/css"
 };
 ```
-* create server function (like the code from the Node.js web site but expanded)
+* created a server function (expanded the code from the Node.js web site)
 ```
 // note request and response variables
 http.createServer(function(req, res){
@@ -76,7 +79,7 @@ http.createServer(function(req, res){
 	}
 }).listen(3000);
 ```
-* create new files index.html etc.
+* created new files index.html etc.
 * test with $ npm start and open localhost:3000
 * be sure to test a non existent page e.g. page-x.html
 
@@ -94,71 +97,27 @@ http.createServer(function(req, res){
 		a(href='#')
 
 ```
-In a new directory
-* install express globally: $ npm install -g express
+* try http://html2jade.org/ with layout.html
+
+In a new directory:
+
+* install express globally: $ sudo npm install -g express
 * install generator: $ npm install -g express-generator
 * generate website: $ express express_website
 * examine package.json for dependancies
-* add latest version of node mailer "nodemailer":"*"   see: http://adilapapaya.com/docs/nodemailer/
+* install dependencies $npm install 
+
+* added latest version of node mailer "nodemailer":"*"   see: http://adilapapaya.com/docs/nodemailer/
 * $ npm install
+* $ DEBUG=express_website:* npm start
 
-* add to app.js
 
-* var nodemailer = require('nodemailer');
+##Routes and Jade Templates
 
-run
-$ npm start
-
-Convert to Jade
-* with bootstrap starter template
-* html2jade
-
-##Routes and jade views
-
-* in app.js 
-```
-var routes = require('./routes/index');
-```
-and
-```
-app.use('/', routes);
-```
-* can remove users route - not using
-* note routes folder and index.js
-* index.js renders the jade files and includes an example of an object 'title' that is passed to the template (examine index.jade)
-```
-extends layout
-
-block content
-  h1= title
-  // no need for concatination
-  p Welcome to #{title}
-  // concatination
-```
-
-* edit the ttitle attribute in layout.jade
-```
-doctype html
-html
-  head
-    title #{title}: Express Website
-    meta( charset='utf-8' )
-```
-
-##Implementing the Jade Templates
-
-* examine index.jade in views (folder number 4)
-* note addition of jumbotron and 3 columns below (inside container > row)
-* try introducing an error by combining tabs and spaces
-* refresh browser and note highlighted Home link
-* in layout.jade there is a condition:
-```
-ul.nav.navbar-nav.navbar-right
-         li(class=(title === 'Home' ? 'active' : ''))
-```
-
-## routing in app.js
-* we've added routing
+* reference 4-express_website ($ npm install and $ npm start)
+* sample from http://getbootstrap.com/getting-started/#examples
+* added to app.js var nodemailer = require('nodemailer');
+* note routes in app.js 
 ```
 var routes = require('./routes/index');
 var about = require('./routes/about');
@@ -171,11 +130,51 @@ app.use('/about',about);
 app.use('/contact',contact);
 ```
 * and we've added about.js and contact.js
+* note routes folder and corresponding elements in index.js: each route has a js file
+* index.js renders the jade files and includes an example of an object 'title' that is passed to the template (examine index.jade)
+
+```
+<!-- extends layout
+
+block content
+  h1= title
+  // no need for concatination
+  p Welcome to #{title}
+  // concatination
+``` -->
+
+* change the variable to home and restart the server
+```
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Home' });
+});
+```
+
+* edited the title attribute in views/layout.jade
+```
+doctype html
+html
+  head
+    title #{title}: Express Website
+    meta( charset='utf-8' )
+```
+
+* note addition of jumbotron and 3 columns below (inside index.jade)
+* try introducing an error by combining tabs and spaces
+* refresh browser and note highlighted Home link
+* in layout.jade there is a condition:
+```
+ul.nav.navbar-nav.navbar-right
+         li(class=(title === 'Home' ? 'active' : ''))
+```
+
 * no databases here so the files are simple
 * and we've add about.jade and contact.jade
 
+
 ##Node Mailer Module
 
+* reference 5-nodemailer
 * examine contact.jade
 * examine contact route (contact.js)
 ```
