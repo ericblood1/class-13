@@ -197,6 +197,11 @@ var nodemailer = require('nodemailer');
 * $ heroku ps:scale web=1 - to ensure one instance of the app is running
 * $ heroku open
 
+See https://devcenter.heroku.com/articles/using-the-cli for additional CLI cmmands
+
+* $ heroku apps:info
+* $ heroku apps:rename <dannyboynyc>
+
 
 
 
