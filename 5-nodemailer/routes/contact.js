@@ -13,15 +13,15 @@ router.post('/send', function(req, res, next) {
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'techguyinfo@gmail.com',
-        pass: 'Gm5334!#'
+        user: 'daniel.deverell@gmail.com',
+        pass: 'XXXXXXXXXXXXX'
     }
 });
 
 // Email Setup
 var mailOptions = {
-    from: 'Daniel Deverell <techguyinfo@gmail.com>',
-    to: 'support@joomdigi.com',
+    from: 'Daniel Deverell <daniel.deverell@gmail.com>',
+    to: 'daniel.deverell@nyu.edu',
     subject: 'Website Submission',
     // Plain Text Version
     text: 'You have a submission with the following details... Name: '+req.body.name +'Email: '+req.body.email +'Message: '+req.body.message,

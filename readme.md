@@ -185,6 +185,18 @@ var nodemailer = require('nodemailer');
 * within the versions the variables are coming from contact.jade (name, email, etc)
 * need to be logged into gmail in order for it to work
 
+##Push to Heroku
+* before pushing make sure you have a working master branch on github
+* login to heroku
+* download and install Heroku toolbelt
+* $ heroku login
+* $ git clone https://<pathtoyourapp>.git
+* $ cd into clone directory
+* $ heroku create - when you create an app, a git remote (called heroku) is also created and associated with your local git repository
+* $ git push heroku master
+* $ heroku ps:scale web=1 - to ensure one instance of the app is running
+* $ heroku open
+
 
 
 
