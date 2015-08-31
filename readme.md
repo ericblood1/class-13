@@ -78,17 +78,106 @@ http.createServer(function(req, res){
 ```
 * create new files index.html etc.
 * test with $ npm start and open localhost:3000
-* be sure to test a non existant page
+* be sure to test a non existent page e.g. page-x.html
 
 ##Basic Express Website
 
+* Jade and indentation (tabs or spaces)
+```
+<div class="container">
+	<p></p>
+	<a href="#">Link</a>
+</div>
 
+.container
+	p
+		a(href='#')
 
+```
+In a new directory
+* install express globally: $ npm install -g express
+* install generator: $ npm install -g express-generator
+* generate website: $ express express_website
+* examine package.json for dependancies
+* add latest version of node mailer "nodemailer":"*"   see: http://adilapapaya.com/docs/nodemailer/
+* $ npm install
 
+* add to app.js
 
+* var nodemailer = require('nodemailer');
 
+run
+$ npm start
 
+Convert to Jade
+* with bootstrap starter template
+* html2jade
 
+##Routes and jade views
+
+* in app.js 
+```
+var routes = require('./routes/index');
+```
+and
+```
+app.use('/', routes);
+```
+* can remove users route - not using
+* note routes folder and index.js
+* index.js renders the jade files and includes an example of an object 'title' that is passed to the template (examine index.jade)
+```
+extends layout
+
+block content
+  h1= title
+  // no need for concatination
+  p Welcome to #{title}
+  // concatination
+```
+
+* edit the ttitle attribute in layout.jade
+```
+doctype html
+html
+  head
+    title #{title}: Express Website
+    meta( charset='utf-8' )
+```
+
+##Implementing the Jade Templates
+
+* examine index.jade in views (folder number 4)
+* note addition of jumbotron and 3 columns below (inside container > row)
+* try introducing an error by combining tabs and spaces
+* refresh browser and note highlighted Home link
+* in layout.jade there is a condition:
+```
+ul.nav.navbar-nav.navbar-right
+         li(class=(title === 'Home' ? 'active' : ''))
+```
+
+## routing in app.js
+* we've added routing
+```
+var routes = require('./routes/index');
+var about = require('./routes/about');
+var contact = require('./routes/contact');
+```
+and
+```
+app.use('/', routes);
+app.use('/about',about);
+app.use('/contact',contact);
+```
+* and we've added about.js and contact.js
+* no databases here so the files are simple
+* and we've add about.jade and contact.jade
+
+##Node Mailer Module
+
+* examine contact.jade
+* examine contact route (contact.js)
 
 
 
