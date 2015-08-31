@@ -178,6 +178,13 @@ app.use('/contact',contact);
 
 * examine contact.jade
 * examine contact route (contact.js)
+```
+var nodemailer = require('nodemailer');
+```
+* transporter variable provides credentials
+* main options for the standard email options including plain text and html versions
+* within the versions the variables are coming from contact.jade (name, email, etc)
+* need to be logged into gmail in order for it to work
 
 
 

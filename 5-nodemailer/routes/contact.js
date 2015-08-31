@@ -20,7 +20,7 @@ var transporter = nodemailer.createTransport({
 
 // Email Setup
 var mailOptions = {
-    from: 'Brad Traversy <techguyinfo@gmail.com>',
+    from: 'Daniel Deverell <techguyinfo@gmail.com>',
     to: 'support@joomdigi.com',
     subject: 'Website Submission',
     // Plain Text Version
